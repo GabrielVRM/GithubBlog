@@ -1,8 +1,11 @@
+import { useContext } from "react";
 import { Cards } from "../Cards";
 import { Container, Input } from "./styles";
+import { ContextApi } from "../../context/api";
 
 export function Published() {
-  const arr = [1, 2, 3, 4, 5, 6];
+  const { repos } = useContext(ContextApi);
+
   return (
     <>
       <Container>
@@ -13,9 +16,16 @@ export function Published() {
           </div>
 
           <div className="cards">
-            {arr.map((e) => (
+            {repos.map((e, index) => (
               <>
-                <Cards />
+                <div key={index}>
+                  <Cards
+                    title={e.name}
+                    descritpion={e.description}
+                    created={e.created_at}
+                    language={e.language}
+                  />
+                </div>
               </>
             ))}
           </div>

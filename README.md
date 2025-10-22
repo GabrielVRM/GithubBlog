@@ -11,6 +11,7 @@ Json-Server -> permite ter um simulaçao do back-end, ele cria uma API completa 
 -> @types/styled-components -D, tipagem do typescript!
 -> Json-Server
 -> react-Router-dom
+rock
 
 ## Objetivos
 
