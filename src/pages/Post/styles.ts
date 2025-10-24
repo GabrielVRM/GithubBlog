@@ -10,8 +10,11 @@ export const Container = styled.div`
     display: flex;
     justify-content: center;
 
+    padding: 5rem;
+
     p {
       width: 54rem;
+      text-align: center;
     }
   }
 `;

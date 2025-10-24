@@ -1,14 +1,17 @@
+import { Link } from "react-router-dom";
 import { Container, ProfileContainer } from "./styles";
 
 interface ProfileType {
-  img: string;
-  name: string;
-  bio: string;
-  login: string;
-  company: string;
-  follows: string;
+  img: string | undefined | null;
+  name: string | undefined;
+  bio: string | undefined | null;
+  login: string | undefined;
+  company: string | undefined | null;
+  follows: number | undefined;
+  github: string | undefined;
 }
 export function Profile({
+  github,
   img,
   bio,
   company,
@@ -22,13 +25,15 @@ export function Profile({
         <ProfileContainer>
           <div className="profile-content">
             <div className="image">
-              <img src={img} />
+              <img src={img ?? " "} />
             </div>
             <div>
               <div>
                 <div className="text-content">
                   <h1>{name}</h1>
-                  <span>Github</span>
+                  <Link to={github ?? "/"}>
+                    <span>Github</span>
+                  </Link>
                 </div>
                 <p>{bio}</p>
               </div>
