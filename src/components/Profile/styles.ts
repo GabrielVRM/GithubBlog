@@ -23,6 +23,11 @@ export const ProfileContainer = styled.div`
   .text-content {
     display: flex;
     justify-content: space-between;
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
   img {
     border-radius: 8px;

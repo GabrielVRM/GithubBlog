@@ -30,4 +30,5 @@ export const Input = styled.input`
   border-radius: 6px;
   padding: 1rem;
   background: ${(props) => props.theme.baseInput};
+  color: white;
 `;

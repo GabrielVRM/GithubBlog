@@ -4,9 +4,10 @@ import type { GitHubRepository, GitHubUser } from "../../@types/style";
 
 interface ApiContextType {
   users: Partial<GitHubUser>;
-  repos: GitHubRepository[];
+  repos: (Partial<GitHubRepository> | undefined)[];
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const ContextApi = createContext({} as ApiContextType);
 
 type ApiType = {
@@ -14,12 +15,12 @@ type ApiType = {
 };
 export function ContextProvider({ children }: ApiType) {
   const [users, setUsers] = useState<Partial<GitHubUser>>({});
-  const [repos, setRepos] = useState<Partial<GitHubUser>>({});
+  const [repos, setRepos] = useState<Partial<GitHubRepository[]>>([]);
 
   useEffect(() => {
     //api.github.com/search/issues?q={query} repo:{username}/{repo}
     async function getDataGitHub() {
-      const username = "GabrielVRM";
+      const username = "diego3g";
       const url = `https://api.github.com/users/`;
       const urlUsers = `${url}${username}`;
       const urlRepos = `${url}${username}/repos`;
@@ -34,7 +35,9 @@ export function ContextProvider({ children }: ApiType) {
   if (!users) {
     return;
   }
-
+  if (!repos) {
+    return;
+  }
   return (
     <>
       <ContextApi.Provider value={{ users, repos }}>

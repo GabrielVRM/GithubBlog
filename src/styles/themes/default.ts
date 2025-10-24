@@ -9,4 +9,4 @@ export const defaultTheme = {
   baseSubtitle: "#C4D4E3",
   baseTitle: "#E7EDF4",
   blue: "#3294F8",
-} as const;
+};

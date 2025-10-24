@@ -1,4 +1,11 @@
 import styled from "styled-components";
+
+export const LinkContainer = styled.div`
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+`;
 export const Container = styled.div`
   width: 26rem;
   height: 16.25rem;
@@ -7,6 +14,11 @@ export const Container = styled.div`
 
   padding: 1rem;
   border-radius: 10px;
+  &:hover {
+    opacity: 0.5;
+    transition: 0.8s;
+    cursor: pointer;
+  }
 
   div:nth-child(1) {
     width: 100%;

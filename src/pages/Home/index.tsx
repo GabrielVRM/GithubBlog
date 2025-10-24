@@ -6,10 +6,12 @@ import { ContextApi } from "../../context/api";
 
 export function Home() {
   const { users } = useContext(ContextApi);
+  console.log({ texte: users });
   return (
     <>
       <Container>
         <Profile
+          github={users.html_url}
           img={users.avatar_url}
           name={users.name}
           bio={users.bio}
