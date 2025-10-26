@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
-import { Container, ProfileContainer } from "./styles";
+import { Container, Input, ProfileContainer } from "./styles";
+import { useContext, useState, type FormEvent } from "react";
+import { ContextApi } from "../../context/api";
 
 interface ProfileType {
   img: string | undefined | null;
@@ -19,9 +21,28 @@ export function Profile({
   login,
   name,
 }: ProfileType) {
+  const { setUsername } = useContext(ContextApi);
+
+  const [newUser, setNewUser] = useState("");
+  function handleNewUser(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setUsername(newUser);
+    setNewUser("");
+  }
   return (
     <>
       <Container>
+        <div className="div-search">
+          <h1>Trocar de User</h1>
+          <form onSubmit={(e) => handleNewUser(e)}>
+            <Input
+              placeholder="username do github"
+              onChange={(e) => setNewUser(e.target.value)}
+              value={newUser}
+            />
+            <button type="submit">Buscar</button>
+          </form>
+        </div>
         <ProfileContainer>
           <div className="profile-content">
             <div className="image">
