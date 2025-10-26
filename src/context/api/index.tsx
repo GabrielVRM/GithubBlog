@@ -1,10 +1,18 @@
 import axios from "axios";
-import { createContext, useEffect, useState, type ReactNode } from "react";
+import {
+  createContext,
+  useEffect,
+  useState,
+  type Dispatch,
+  type ReactNode,
+  type SetStateAction,
+} from "react";
 import type { GitHubRepository, GitHubUser } from "../../@types/style";
 
 interface ApiContextType {
   users: Partial<GitHubUser>;
   repos: (Partial<GitHubRepository> | undefined)[];
+  setUsername: Dispatch<SetStateAction<string>>;
 }
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -16,11 +24,11 @@ type ApiType = {
 export function ContextProvider({ children }: ApiType) {
   const [users, setUsers] = useState<Partial<GitHubUser>>({});
   const [repos, setRepos] = useState<Partial<GitHubRepository[]>>([]);
+  const [username, setUsername] = useState<string>("GabrielVRM");
 
   useEffect(() => {
     //api.github.com/search/issues?q={query} repo:{username}/{repo}
     async function getDataGitHub() {
-      const username = "diego3g";
       const url = `https://api.github.com/users/`;
       const urlUsers = `${url}${username}`;
       const urlRepos = `${url}${username}/repos`;
@@ -31,7 +39,7 @@ export function ContextProvider({ children }: ApiType) {
     }
 
     getDataGitHub();
-  }, []);
+  }, [username]);
   if (!users) {
     return;
   }
@@ -40,7 +48,7 @@ export function ContextProvider({ children }: ApiType) {
   }
   return (
     <>
-      <ContextApi.Provider value={{ users, repos }}>
+      <ContextApi.Provider value={{ users, repos, setUsername }}>
         {children}
       </ContextApi.Provider>
     </>

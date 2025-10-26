@@ -11,7 +11,7 @@ export function Published() {
   const reposFiltered = repos.filter(
     (repo) => repo && repo.name?.toLowerCase().includes(search)
   );
-  console.log({ tetse: reposFiltered });
+
   return (
     <>
       <Container>
